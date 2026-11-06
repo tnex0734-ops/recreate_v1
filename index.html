@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCode - Hackathon Arena | The Digital Home for Student Innovation</title>
+  <meta name="description" content="CampusCode is an AI-powered hackathon platform - one place to run and join hackathons. BUILD - COMPETE - SHIP.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="cursor" class="landing-cursor"></div>
+  <header class="landing-nav">
+    <a href="index.html" class="brand-logo" aria-label="CampusCode Home">
+      <span class="logo-slashes"><span></span><span></span><span></span></span>
+      <span class="brand-text">
+        <strong>CAMPUSCODE</strong>
+        <small>HACKATHON ARENA</small>
+      </span>
+    </a>
+    <nav class="landing-links" id="landingNavLinks">
+      <a href="#about">ABOUT</a>
+      <a href="#how">HOW IT WORKS</a>
+      <a href="#hackathons">HACKATHONS</a>
+      <a href="#community">COMMUNITY</a>
+      <a href="register.html" class="landing-join-mobile">JOIN CAMPUSCODE ↗</a>
+    </nav>
+    <div class="landing-nav-actions">
+      <a href="login.html" class="btn-login">LOGIN</a>
+      <a href="register.html" class="btn-join">JOIN CAMPUSCODE ↗</a>
+      <button type="button" class="landing-menu" onclick="toggleMenu()" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+  <section class="landing-hero">
+    <div class="hero-network">
+      <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+        <path d="M0 600 C180 450 250 620 420 430 S680 80 900 270 S1150 500 1400 180"></path>
+        <path d="M80 130 C280 300 380 80 570 270 S800 620 1080 500 S1250 400 1400 620"></path>
+        <path d="M250 800 C400 600 570 650 720 460 S970 180 1160 80"></path>
+        <circle cx="420" cy="430" r="5"></circle>
+        <circle cx="900" cy="270" r="5"></circle>
+        <circle cx="1080" cy="500" r="5"></circle>
+      </svg>
+    </div>
+    <div class="hero-top-line">
+      <span><i></i> THE DIGITAL HOME FOR STUDENT INNOVATION</span>
+      <span>CHENNAI · INDIA</span>
+    </div>
+    <div class="hero-content">
+      <span class="hero-label">CAMPUSCODE / 001</span>
+      <h1>BUILD<br><span class="stroke-word">COMPETE</span><br>SHIP.</h1>
+      <div class="hero-description">
+        <p>A digital arena for students who don't just have ideas. They build them.</p>
+        <a href="#hackathons" class="btn-explore">EXPLORE HACKATHONS ↗</a>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <span>SCROLL TO EXPLORE</span>
+      <span style="display:inline-block;width:80px;height:2px;background:var(--border);"></span>
+      <span>01 / 05</span>
+    </div>
+  </section>
+  <div class="landing-marquee">
+    <div class="marquee-track">
+      <span>PEOPLE <b>✦</b> PRODUCTS <b>✦</b> INNOVATION <b>✦</b> COMMUNITY <b>✦</b> IDEAS <b>✦</b> PEOPLE <b>✦</b> PRODUCTS <b>✦</b> INNOVATION <b>✦</b> COMMUNITY <b>✦</b> IDEAS</span>
+      <span>PEOPLE <b>✦</b> PRODUCTS <b>✦</b> INNOVATION <b>✦</b> COMMUNITY <b>✦</b> IDEAS <b>✦</b> PEOPLE <b>✦</b> PRODUCTS <b>✦</b> INNOVATION <b>✦</b> COMMUNITY <b>✦</b> IDEAS</span>
+    </div>
+  </div>
+  <section id="about" class="section-wrap">
+    <div class="about-grid">
+      <div class="about-content">
+        <div class="section-tag">01 / WHAT IS CAMPUSCODE?</div>
+        <h2>WHERE STUDENTS <em>BUILD.</em></h2>
+        <p style="font-size:16px;color:var(--text-soft);line-height:1.6;margin-bottom:16px;">
+          CampusCode is an AI-powered hackathon platform — one place to run and join hackathons, instead of juggling many tools.
+        </p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;">
+          College hackathons run on scattered forms, WhatsApp channels, and messy spreadsheets. CampusCode brings registrations, team matching with HackMate, AI idea screening, live rounds, and verifiable certificates under a single unified dashboard.
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-circle c3"></div>
+        <div class="about-circle c2"></div>
+        <div class="about-circle c1"></div>
+        <div class="about-core">CC</div>
+      </div>
+    </div>
+  </section>
+  <section class="section-wrap" style="background:#fff;">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">EXPERIENCE / PLATFORM PREVIEW</div>
+        <h2 class="section-title">BUILT FOR SPEED. DESIGNED FOR BUILDERS.</h2>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-player-wrap" onclick="toggleVideoSound()">
+        <video id="campusVideo" autoplay muted loop playsinline preload="auto">
+          <source src="assets/videos/what-is-campuscode.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay-gradient"></div>
+      </div>
+      <div class="video-top-tag">
+        <span>CAMPUSCODE · CINEMATIC OVERVIEW</span>
+        <span class="video-mute-pill" id="soundPill">🔇 CLICK FOR SOUND</span>
+      </div>
+      <div class="video-bottom">
+        <div>
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--lime);display:block;margin-bottom:6px;">LIVE REVEAL</span>
+          <h3>THE DIGITAL ARENA IN MOTION</h3>
+        </div>
+        <a href="register.html" class="btn-join" style="position:relative;z-index:3;">GET STARTED ↗</a>
+      </div>
+    </div>
+  </section>
+  <section id="how" class="section-wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">02 / THE WORKFLOW</div>
+        <h2 class="section-title">FROM IDEA TO VERIFIED CREDENTIAL.</h2>
+      </div>
+    </div>
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <span class="step-num">01</span>
+        <div>
+          <h3>DISCOVER</h3>
+          <p>Browse curated college and national hackathons with verified problem statements and timelines.</p>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <span class="step-num">02</span>
+        <div>
+          <h3>HACKMATE AI</h3>
+          <p>Find teammates matching your exact tech stack, or search participants directly by CampusCode ID.</p>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <span class="step-num">03</span>
+        <div>
+          <h3>SUBMIT</h3>
+          <p>Submit repositories, deployed demos, and pitch decks with automated AI pre-screening and plagiarism verification.</p>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <span class="step-num">04</span>
+        <div>
+          <h3>EARN & VERIFY</h3>
+          <p>Receive cryptographically signed certificates and a Digital Student ID card with verifiable QR code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="hackathons" class="section-wrap" style="background:#fff;">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">03 / LIVE & UPCOMING HACKATHONS</div>
+        <h2 class="section-title">ACTIVE COMPETITIONS.</h2>
+      </div>
+    </div>
+    <div class="hackathon-list">
+      <div class="hackathon-row">
+        <div class="hackathon-info">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+            <span class="badge-live">LIVE NOW</span>
+            <span style="font-family:var(--font-mono);font-size:11px;color:var(--purple);font-weight:700;">ROUND 1 IN PROGRESS</span>
+          </div>
+          <h3>ReBuild '26 — Recreate & Rebuild Hackathon</h3>
+          <div class="hackathon-meta">
+            <span>NOV 6-7, 2026</span>
+            <span>·</span>
+            <span>ONLINE / CHENNAI</span>
+            <span>·</span>
+            <span>INDIVIDUAL</span>
+            <span>·</span>
+            <span>FRONTEND ONLY</span>
+          </div>
+        </div>
+        <a href="login.html" class="btn-view-event">ENTER ARENA ↗</a>
+      </div>
+      <div class="hackathon-row">
+        <div class="hackathon-info">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+            <span class="badge-upcoming">UPCOMING</span>
+            <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted);font-weight:700;">REGISTRATIONS OPEN</span>
+          </div>
+          <h3>FirstCommit '26 Quiz Competition 2.0</h3>
+          <div class="hackathon-meta">
+            <span>NOV 14-15, 2026</span>
+            <span>·</span>
+            <span>ONLINE</span>
+            <span>·</span>
+            <span>TIMED ASSESSMENT</span>
+          </div>
+        </div>
+        <a href="register.html" class="btn-view-event">REGISTER ↗</a>
+      </div>
+    </div>
+  </section>
+  <div id="community" class="cta-banner">
+    <div>
+      <span style="font-family:var(--font-mono);font-size:11px;color:var(--lime);letter-spacing:1.5px;display:block;margin-bottom:8px;">COMMUNITY / READY?</span>
+      <h2>YOUR NEXT PROJECT STARTS HERE.</h2>
+      <p>Recreate it faithfully on Friday. Rebuild it beautifully on Saturday. Join hundreds of builders across top campuses.</p>
+    </div>
+    <a href="register.html" class="btn-join">JOIN CAMPUSCODE ↗</a>
+  </div>
+  <footer class="landing-footer">
+    <div>© 2026 CAMPUSCODE · LEARN · BUILD · COMPETE · SHIP · CHENNAI, INDIA</div>
+    <div style="display:flex;gap:20px;">
+      <a href="login.html">LOGIN</a>
+      <a href="register.html">REGISTER</a>
+      <a href="student.html">STUDENT ARENA</a>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+  <script>
+    function toggleMenu(){
+      const l=document.getElementById('landingNavLinks');
+      l.classList.toggle('open');
+    }
+    const c=document.getElementById('cursor');
+    window.addEventListener('mousemove',e=>{
+      c.style.left=e.clientX+'px';
+      c.style.top=e.clientY+'px';
+    });
+    function toggleVideoSound(){
+      const v=document.getElementById('campusVideo');
+      const p=document.getElementById('soundPill');
+      v.muted=!v.muted;
+      p.innerText=v.muted?'🔇 CLICK FOR SOUND':'🔊 SOUND ON';
+    }
+  </script>
+</body>
+</html>
