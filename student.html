@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — CampusCode</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <span class="logo-slashes"><span></span><span></span><span></span></span>
+          <span class="brand-text">
+            <strong>CAMPUSCODE</strong>
+            <small>HACKATHON ARENA</small>
+          </span>
+        </a>
+      </div>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-pill active" id="pill-overview" onclick="switchTab('overview')">
+          <div><span class="icon">⊞</span> Overview</div>
+          <span class="active-arrow">→</span>
+        </button>
+        <button type="button" class="nav-pill" id="pill-events" onclick="switchTab('events')">
+          <div><span class="icon">🏆</span> Events</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-my-events" onclick="switchTab('my-events')">
+          <div><span class="icon">🕒</span> My Events</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-hackmate" onclick="switchTab('hackmate')">
+          <div><span class="icon">✨</span> HackMate AI</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-ideacheck" onclick="switchTab('ideacheck')">
+          <div><span class="icon">💡</span> IdeaCheck AI</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-certificates" onclick="switchTab('certificates')">
+          <div><span class="icon">🎖️</span> Certificates</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-digital-card" onclick="switchTab('digital-card')">
+          <div><span class="icon">🪪</span> Digital Card</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-rulebot" onclick="switchTab('rulebot')">
+          <div><span class="icon">🤖</span> RuleBot AI</div>
+          <span class="ai-tag">AI</span>
+        </button>
+        <button type="button" class="nav-pill" id="pill-guide" onclick="switchTab('guide')">
+          <div><span class="icon">📖</span> Student Guide</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-comms" onclick="switchTab('comms')">
+          <div><span class="icon">📢</span> Official Communication</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-notifications" onclick="switchTab('notifications')">
+          <div><span class="icon">🔔</span> Notifications</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-support" onclick="switchTab('support')">
+          <div><span class="icon">❓</span> Help & Support</div>
+        </button>
+        <button type="button" class="nav-pill" id="pill-profile" onclick="switchTab('profile')">
+          <div><span class="icon">👤</span> Profile</div>
+        </button>
+      </nav>
+      <div class="student-sidebar-bottom">
+        <div class="sidebar-label" style="padding:0 0 6px 0;">ACCOUNT</div>
+        <div class="sidebar-user" onclick="switchTab('profile')" title="View profile">
+          <div class="user-avatar-small" id="sidebarAvatar">SH</div>
+          <span>
+            <strong id="sidebarUserName">Sai Harshith</strong>
+            <small id="sidebarRole">STUDENT</small>
+          </span>
+        </div>
+        <button type="button" class="logout-btn" onclick="logout()">
+          <span>↳</span> LOG OUT
+        </button>
+      </div>
+    </aside>
+    <div class="dashboard-main-wrap">
+      <header class="student-topbar">
+        <div>
+          <span>CAMPUSCODE / STUDENT</span>
+          <strong id="topbarSectionTitle">OVERVIEW</strong>
+        </div>
+        <div class="student-top-actions">
+          <button type="button" class="student-top-btn" onclick="switchTab('notifications')" aria-label="Notifications" title="Notifications">
+            <span style="font-size:14px;">🔔</span>
+            <span class="unread-dot"></span>
+          </button>
+          <button type="button" class="student-refresh-btn" onclick="refreshStudentView()" aria-label="Refresh data" title="Refresh data">
+            <span>↻</span> REFRESH
+          </button>
+          <div class="topbar-user" onclick="switchTab('profile')" title="Manage profile">
+            <svg class="student-avatar" width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="50" fill="#000000"/>
+              <circle cx="50" cy="46" r="26" fill="#fcd7b6"/>
+              <path d="M20 38 Q20 14 50 14 Q80 14 80 38 Q72 26 60 28 Q52 18 40 26 Q28 24 20 38Z" fill="#1c1c1c"/>
+              <circle cx="41" cy="46" r="3.4" fill="#1c1c1c"/>
+              <circle cx="59" cy="46" r="3.4" fill="#1c1c1c"/>
+              <circle cx="42" cy="45" r="1.1" fill="#fff"/>
+              <circle cx="60" cy="45" r="1.1" fill="#fff"/>
+              <path d="M44 56 Q50 61 56 56" stroke="#1c1c1c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <ellipse cx="35" cy="53" rx="4" ry="2.6" fill="#ff9d9d" opacity="0.55"/>
+              <ellipse cx="65" cy="53" rx="4" ry="2.6" fill="#ff9d9d" opacity="0.55"/>
+              <path d="M34 78 Q50 70 66 78 L64 100 L36 100Z" fill="#7665ff"/>
+            </svg>
+            <span id="topbarUserName">Sai Harshith</span>
+          </div>
+        </div>
+      </header>
+      <main class="dashboard-main">
+        <section id="tab-overview">
+          <div class="student-eyebrow">STUDENT WORKSPACE / LIVE</div>
+          <h1 class="student-heading">
+            WELCOME BACK, <span class="highlight-sai" id="dashGreetingName">SAI.</span>
+          </h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">
+            Your CampusCode activity is loaded directly from the backend.
+          </p>
+          <div class="student-hero-banner">
+            <div>
+              <span class="tag">BUILD · LEARN · COLLABORATE</span>
+              <h2>ReBuild '26</h2>
+              <p>ReBuild '26 is an individual dashboard-recreation hackathon by CampusCode. You participate alone, but you must create a team name for tracking and use it on your Unstop registration, the CampusCode portal, and every submission. Round 1 (Friday, 6 Nov, morning to 10 PM): Recreate the CampusCode user flow faithfully — Dashboard, Login, Register, and Student dashboard — and submit your demo any time till 10 PM. Round 2 (Saturday, 7 Nov, top performers from Round 1 only): Build a complete new UI in CampusCode's vibe. Frontend only, mock data is fine. No presentation round. Prizes: Winner certificate + CampusCode internship with ₹15,000 stipend, runner-up certificate, and participation certificates for all. Sunday, 8 Nov (Diwali) is free. This is a paid event (₹50 on Unstop). Paid students receive an invite code — enter it when you join this event on the portal.</p>
+              <button type="button" class="btn-join" onclick="openJourney('rebuild')">
+                OPEN EVENT ↗
+              </button>
+            </div>
+            <div class="hero-visual-combo">
+              <svg class="combo-avatar" width="68" height="68" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50" fill="#000000"/>
+                <circle cx="50" cy="46" r="26" fill="#fcd7b6"/>
+                <path d="M20 38 Q20 14 50 14 Q80 14 80 38 Q72 26 60 28 Q52 18 40 26 Q28 24 20 38Z" fill="#1c1c1c"/>
+                <circle cx="41" cy="46" r="3.4" fill="#1c1c1c"/>
+                <circle cx="59" cy="46" r="3.4" fill="#1c1c1c"/>
+                <circle cx="42" cy="45" r="1.1" fill="#fff"/>
+                <circle cx="60" cy="45" r="1.1" fill="#fff"/>
+                <path d="M44 56 Q50 61 56 56" stroke="#1c1c1c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+                <ellipse cx="35" cy="53" rx="4" ry="2.6" fill="#ff9d9d" opacity="0.55"/>
+                <ellipse cx="65" cy="53" rx="4" ry="2.6" fill="#ff9d9d" opacity="0.55"/>
+                <path d="M34 78 Q50 70 66 78 L64 100 L36 100Z" fill="#7665ff"/>
+              </svg>
+              <div class="combo-badge">RE</div>
+            </div>
+          </div>
+          <div class="student-stats-row">
+            <div class="student-stat-card">
+              <span>REGISTERED</span>
+              <strong>3</strong>
+              <small>FROM BACKEND</small>
+            </div>
+            <div class="student-stat-card">
+              <span>ONGOING</span>
+              <strong>1</strong>
+              <small>FROM BACKEND</small>
+            </div>
+            <div class="student-stat-card">
+              <span>COMPLETED</span>
+              <strong>2</strong>
+              <small>FROM BACKEND</small>
+            </div>
+            <div class="student-stat-card">
+              <span>CERTIFICATES</span>
+              <strong>1</strong>
+              <small>FROM BACKEND</small>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted);border-top:1px solid var(--border);">
+            <span>03 / DISCOVER EVENTS</span>
+            <a href="#" onclick="switchTab('events');return false;" style="color:var(--text);font-weight:700;">VIEW ALL ↗</a>
+          </div>
+        </section>
+        <section id="tab-events" style="display:none;">
+          <div class="student-eyebrow">DISCOVER / ACTIVE CATALOG</div>
+          <h1 class="student-heading">EVENTS.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Join verified college hackathons and technical quizzes.</p>
+          <div class="hackathon-list" style="margin-top:24px;">
+            <div class="hackathon-row">
+              <div class="hackathon-info">
+                <span class="badge-live">LIVE NOW</span>
+                <h3 style="margin-top:6px;">ReBuild '26 — Recreate & Rebuild Hackathon</h3>
+                <div class="hackathon-meta">
+                  <span>NOV 6-7, 2026</span><span>·</span><span>ONLINE / CHENNAI</span><span>·</span><span>INDIVIDUAL</span>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="openJourney('rebuild')">OPEN EVENT ↗</button>
+            </div>
+            <div class="hackathon-row">
+              <div class="hackathon-info">
+                <span class="badge-live">LIVE ASSESSMENT</span>
+                <h3 style="margin-top:6px;">FirstCommit '26 Quiz Competition 2.0</h3>
+                <div class="hackathon-meta">
+                  <span>NOV 14-15, 2026</span><span>·</span><span>ONLINE</span><span>·</span><span>TIMED ASSESSMENT</span>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="openJourney('quiz2')">OPEN QUIZ ↗</button>
+            </div>
+            <div class="hackathon-row">
+              <div class="hackathon-info">
+                <span class="badge-upcoming">UPCOMING</span>
+                <h3 style="margin-top:6px;">TechSprint '26 National Hackathon</h3>
+                <div class="hackathon-meta">
+                  <span>DEC 5-6, 2026</span><span>·</span><span>ONLINE</span><span>·</span><span>TEAM (2-4 BUILDERS)</span>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="promptJoinCode('TechSprint \'26')">JOIN WITH CODE ↗</button>
+            </div>
+          </div>
+        </section>
+        <section id="tab-my-events" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="student-eyebrow">MY ACTIVITY / BACKEND DATA</div>
+              <h1 class="student-heading">MY EVENTS.</h1>
+              <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Every event you joined, in one place. Open one to see its rounds, team, results and certificates.</p>
+            </div>
+            <div style="text-align:right;">
+              <strong style="font-size:44px;font-weight:900;display:block;line-height:1;">03</strong>
+              <span style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:1px;">LIVE DATA</span>
+            </div>
+          </div>
+          <div class="my-events-grid" style="margin-top:28px;">
+            <div class="my-event-card">
+              <div class="my-event-top">
+                <span>REGISTRATION</span>
+                <span class="my-event-id">f8e7f349-039c-4dbb-a5b5-6d2d402a4725</span>
+              </div>
+              <div class="my-event-body">
+                <div class="my-event-circle">RE</div>
+                <div>
+                  <h3 class="my-event-title">ReBuild '26</h3>
+                  <div class="my-event-meta">
+                    <span>STATUS: REGISTERED</span>
+                    <span>TEAM: sai'steam</span>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="openJourney('rebuild')">OPEN JOURNEY ↗</button>
+            </div>
+            <div class="my-event-card">
+              <div class="my-event-top">
+                <span>REGISTRATION</span>
+                <span class="my-event-id">03543833-00da-4af9-b62b-9a1803e48f2e</span>
+              </div>
+              <div class="my-event-body">
+                <div class="my-event-circle">FQ</div>
+                <div>
+                  <h3 class="my-event-title">FirstCommit '26 Quiz Competition 2.0</h3>
+                  <div class="my-event-meta">
+                    <span>STATUS: REGISTERED</span>
+                    <span>TEAM: NOT ASSIGNED</span>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="openJourney('quiz2')">OPEN JOURNEY ↗</button>
+            </div>
+            <div class="my-event-card">
+              <div class="my-event-top">
+                <span>REGISTRATION</span>
+                <span class="my-event-id">1c191678-d6ed-4baa-bbc1-40d7105fd19b</span>
+              </div>
+              <div class="my-event-body">
+                <div class="my-event-circle gray">FQ</div>
+                <div>
+                  <h3 class="my-event-title">FirstCommit '26 Quiz Competition</h3>
+                  <div class="my-event-meta">
+                    <span>STATUS: REGISTERED</span>
+                    <span>TEAM: NOT ASSIGNED</span>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="openJourney('quiz1')">OPEN JOURNEY ↗</button>
+            </div>
+          </div>
+        </section>
+        <section id="tab-hub" style="display:none;">
+          <div class="student-eyebrow">EVENT HUB / ARENA</div>
+          <h1 class="student-heading" id="hubTitle">ReBuild '26</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Round 1: Recreation phase. Submit your GitHub repository and live demo URL before deadline.</p>
+          <div class="hub-subnav" style="margin-top:24px;">
+            <button type="button" class="hub-tab-btn active" id="hubbtn-overview" onclick="switchHubSubTab('overview')">OVERVIEW</button>
+            <button type="button" class="hub-tab-btn" id="hubbtn-submit" onclick="switchHubSubTab('submit')">ROUND 1 SUBMISSION</button>
+            <button type="button" class="hub-tab-btn" id="hubbtn-team" onclick="switchHubSubTab('team')">MY TEAM</button>
+            <button type="button" class="hub-tab-btn" id="hubbtn-leaderboard" onclick="switchHubSubTab('leaderboard')">LEADERBOARD</button>
+          </div>
+          <div id="hub-overview">
+            <div class="profile-field" style="margin-bottom:16px;">
+              <span>SCHEDULE & RULES</span>
+              <strong style="font-size:14px;margin-top:8px;">Friday, 6 Nov (8:00 AM - 10:00 PM IST): Recreate the 4 pages (Landing, Login, Register, Student Dashboard) faithfully. Frontend only.</strong>
+            </div>
+          </div>
+          <div id="hub-submit" style="display:none;">
+            <div class="profile-edit-shell">
+              <h3 style="font-size:18px;font-weight:900;margin-bottom:16px;">Round 1 Submission Form</h3>
+              <form onsubmit="handleHubSubmit(event)" style="display:flex;flex-direction:column;gap:14px;">
+                <div class="form-field">
+                  <label>GITHUB REPOSITORY LINK</label>
+                  <input type="url" id="subGithub" class="captcha-input" placeholder="https://github.com/username/campuscode-rebuild" required>
+                </div>
+                <div class="form-field">
+                  <label>LIVE DEMO LINK (NETLIFY / VERCEL / GITHUB PAGES)</label>
+                  <input type="url" id="subDemo" class="captcha-input" placeholder="https://my-campuscode.netlify.app" required>
+                </div>
+                <div class="form-field">
+                  <label>OPTIONAL DRIVE LINK (PUBLIC VIEW ACCESS)</label>
+                  <input type="url" id="subDrive" class="captcha-input" placeholder="https://drive.google.com/file/d/...">
+                </div>
+                <div class="form-field">
+                  <label>NOTE FOR THE ORGANIZER</label>
+                  <textarea id="subNotes" class="profile-edit-field" rows="4" placeholder="Faithful recreation of all 4 pages in pure HTML/CSS/JS without build steps." style="padding:12px;border:1px solid var(--border);border-radius:6px;outline:none;font-size:13px;"></textarea>
+                </div>
+                <button type="submit" class="auth-submit-btn" style="align-self:flex-start;padding:12px 24px;">
+                  <span>SUBMIT ROUND 1 PROJECT</span>
+                  <span>↗</span>
+                </button>
+              </form>
+              <div id="submitSuccessMsg" class="profile-message" style="display:none;margin-top:14px;">
+                ✓ Submission recorded in CampusCode backend. Status: PENDING REVIEW.
+              </div>
+            </div>
+          </div>
+          <div id="hub-team" style="display:none;">
+            <div class="profile-grid">
+              <div class="profile-field"><span>TEAM NAME</span><strong>sai'steam</strong></div>
+              <div class="profile-field"><span>TRACKING TYPE</span><strong>Individual Participant (Solo)</strong></div>
+              <div class="profile-field"><span>PARTICIPANT NAME</span><strong id="teamMemberName">Sai Harshith</strong></div>
+              <div class="profile-field"><span>CAMPUSCODE ID</span><strong id="teamMemberId">CC-2026-8841</strong></div>
+            </div>
+          </div>
+          <div id="hub-leaderboard" style="display:none;">
+            <div class="hackathon-list">
+              <div class="hackathon-row">
+                <div class="hackathon-info">
+                  <strong>#1 · sai'steam</strong>
+                  <div class="hackathon-meta"><span>4 / 4 PAGES RECREATED</span><span>·</span><span>DESKTOP OPTIMIZED</span></div>
+                </div>
+                <span class="badge-live">QUALIFIED</span>
+              </div>
+              <div class="hackathon-row">
+                <div class="hackathon-info">
+                  <strong>#2 · Team Alpha</strong>
+                  <div class="hackathon-meta"><span>4 / 4 PAGES RECREATED</span></div>
+                </div>
+                <span class="badge-live">QUALIFIED</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="tab-profile" style="display:none;">
+          <div class="student-eyebrow">ACCOUNT / BACKEND PROFILE</div>
+          <h1 class="student-heading">YOUR PROFILE.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">
+            Edit your student profile and save the changes directly to the CampusCode backend.
+          </p>
+          <div id="profileViewMode">
+            <div class="profile-grid">
+              <div class="profile-field">
+                <span>NAME</span>
+                <strong id="pvName">Sai Harshith</strong>
+              </div>
+              <div class="profile-field">
+                <span>EMAIL</span>
+                <strong id="pvEmail">sai@campuscode.co.in</strong>
+              </div>
+              <div class="profile-field">
+                <span>ROLE</span>
+                <strong id="pvRole">STUDENT</strong>
+              </div>
+              <div class="profile-field">
+                <span>CAMPUSCODE ID</span>
+                <strong id="pvCampusId">CC-2026-8841</strong>
+              </div>
+              <div class="profile-field" style="grid-column:1/-1;">
+                <span>BIO</span>
+                <strong id="pvBio">Full-stack builder passionate about hackathons, systems, and shipping products.</strong>
+              </div>
+              <div class="profile-field" style="grid-column:1/-1;">
+                <span>SKILLS</span>
+                <strong id="pvSkills">HTML, CSS, JavaScript, React, Next.js, Node.js, Python, Tailwind CSS, Git</strong>
+              </div>
+            </div>
+            <div class="profile-edit-actions">
+              <button type="button" class="profile-edit-btn" onclick="toggleEditProfile(true)">EDIT PROFILE ↗</button>
+            </div>
+          </div>
+          <div id="profileEditMode" class="profile-edit-shell" style="display:none;">
+            <div class="profile-edit-grid">
+              <div class="profile-edit-field">
+                <label>NAME</label>
+                <input type="text" id="editName" placeholder="Your name">
+              </div>
+              <div class="profile-edit-field">
+                <label>EMAIL · READ ONLY</label>
+                <input type="email" id="editEmail" disabled>
+              </div>
+              <div class="profile-edit-field full">
+                <label>BIO</label>
+                <textarea id="editBio" placeholder="Tell the CampusCode community about yourself"></textarea>
+              </div>
+              <div class="profile-edit-field full">
+                <label>SKILLS · COMMA SEPARATED</label>
+                <input type="text" id="editSkills" placeholder="React, Node.js, Python" autocomplete="off">
+                <div class="profile-skill-suggestions">
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('HTML')">+ HTML</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('CSS')">+ CSS</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('JavaScript')">+ JavaScript</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('React')">+ React</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('Next.js')">+ Next.js</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('Node.js')">+ Node.js</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('Python')">+ Python</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('Tailwind CSS')">+ Tailwind CSS</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('Git')">+ Git</button>
+                  <button type="button" class="profile-skill-chip" onclick="appendSkill('PostgreSQL')">+ PostgreSQL</button>
+                </div>
+              </div>
+            </div>
+            <div id="profileStatusMsg" class="profile-message" style="display:none;"></div>
+            <div class="profile-edit-actions">
+              <button type="button" class="profile-save-btn" onclick="saveProfileChanges()">SAVE CHANGES ↗</button>
+              <button type="button" class="profile-cancel-btn" onclick="toggleEditProfile(false)">CANCEL</button>
+            </div>
+          </div>
+        </section>
+        <section id="tab-hackmate" style="display:none;">
+          <div class="student-eyebrow">MATCHMAKING / AI DISCOVERY</div>
+          <h1 class="student-heading">HACKMATE AI.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Find teammates who complement your stack, or search participants directly by CampusCode ID.</p>
+          <div style="display:flex;gap:12px;margin:20px 0;">
+            <input type="text" class="captcha-input" placeholder="Search by tech stack (e.g. Next.js, Python) or CampusCode ID (CC-2026-XXXX)..." style="flex:1;">
+            <button type="button" class="btn-open-journey" onclick="alert('Searching CampusCode builder graph...')">SEARCH BUILDERS ↗</button>
+          </div>
+          <div class="my-events-grid">
+            <div class="my-event-card">
+              <div class="my-event-top"><span>CAMPUSCODE ID</span><span class="my-event-id">CC-2026-4412</span></div>
+              <div class="my-event-body">
+                <div class="my-event-circle">AR</div>
+                <div>
+                  <h3 class="my-event-title">Aditi Roy</h3>
+                  <div class="my-event-meta"><span>FRONTEND & UI DESIGN</span><span>SKILLS: React, Figma, Tailwind</span></div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="alert('Invitation sent.')">CONNECT ↗</button>
+            </div>
+            <div class="my-event-card">
+              <div class="my-event-top"><span>CAMPUSCODE ID</span><span class="my-event-id">CC-2026-9031</span></div>
+              <div class="my-event-body">
+                <div class="my-event-circle">KV</div>
+                <div>
+                  <h3 class="my-event-title">Karthik V</h3>
+                  <div class="my-event-meta"><span>BACKEND & CLOUD</span><span>SKILLS: Go, Docker, PostgreSQL</span></div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="alert('Invitation sent.')">CONNECT ↗</button>
+            </div>
+          </div>
+        </section>
+        <section id="tab-ideacheck" style="display:none;">
+          <div class="student-eyebrow">AI SCREENING / PRE-SUBMISSION</div>
+          <h1 class="student-heading">IDEACHECK AI.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Run automatic novelty, feasibility and rule compliance checks on your project proposal.</p>
+          <div class="profile-edit-shell">
+            <div class="form-field">
+              <label>PROJECT TITLE</label>
+              <input type="text" class="captcha-input" placeholder="e.g. AI-Powered Autonomous Campus Security Rover">
+            </div>
+            <div class="form-field" style="margin-top:12px;">
+              <label>PROBLEM STATEMENT & PROPOSED ARCHITECTURE</label>
+              <textarea class="profile-edit-field" rows="5" placeholder="Detail the innovation, technical stack, target beneficiaries and feasibility..." style="padding:12px;border:1px solid var(--border);border-radius:6px;outline:none;font-size:13px;width:100%;"></textarea>
+            </div>
+            <button type="button" class="auth-submit-btn" style="margin-top:16px;padding:12px 24px;align-self:flex-start;" onclick="alert('IdeaCheck Report: Novelty: 88% | Feasibility: 92% | Rule Compliance: 100%')">
+              <span>RUN AI SCREENING</span>
+              <span>↗</span>
+            </button>
+          </div>
+        </section>
+        <section id="tab-digital-card" style="display:none;">
+          <div class="student-eyebrow">CREDENTIALS / DIGITAL ID</div>
+          <h1 class="student-heading">DIGITAL CARD.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Your cryptographically verified student badge across all CampusCode events.</p>
+          <div style="background:#111;color:#fff;border-radius:16px;padding:32px;max-width:540px;margin-top:24px;border:1px solid #333;box-shadow:0 20px 50px rgba(0,0,0,0.25);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
+              <span class="brand-logo" style="color:#fff;">
+                <span class="logo-slashes"><span></span><span></span><span></span></span>
+                <span class="brand-text"><strong>CAMPUSCODE</strong><small style="color:#888;">DIGITAL PASS</small></span>
+              </span>
+              <span class="badge-live">VERIFIED 2026</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:20px;margin-bottom:28px;">
+              <svg class="combo-avatar" width="70" height="70" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="50" fill="#222"/>
+                <circle cx="50" cy="46" r="26" fill="#fcd7b6"/>
+                <path d="M20 38 Q20 14 50 14 Q80 14 80 38 Q72 26 60 28 Q52 18 40 26 Q28 24 20 38Z" fill="#1c1c1c"/>
+                <circle cx="41" cy="46" r="3.4" fill="#1c1c1c"/>
+                <circle cx="59" cy="46" r="3.4" fill="#1c1c1c"/>
+                <circle cx="42" cy="45" r="1.1" fill="#fff"/>
+                <circle cx="60" cy="45" r="1.1" fill="#fff"/>
+                <path d="M44 56 Q50 61 56 56" stroke="#1c1c1c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+                <path d="M34 78 Q50 70 66 78 L64 100 L36 100Z" fill="#7665ff"/>
+              </svg>
+              <div>
+                <h2 style="font-size:24px;font-weight:900;" id="cardHolderName">Sai Harshith</h2>
+                <div style="font-family:var(--font-mono);font-size:12px;color:var(--lime);" id="cardHolderId">CC-2026-8841</div>
+                <div style="font-size:12px;color:#aaa;margin-top:4px;">College of Engineering, Guindy</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #222;padding-top:18px;">
+              <div style="font-family:var(--font-mono);font-size:10px;color:#888;">
+                <div>ROLE: STUDENT / BUILDER</div>
+                <div>ISSUED: NOV 2026 · CHENNAI</div>
+              </div>
+              <div style="width:64px;height:64px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:10px;">
+                QR PASS
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="tab-certificates" style="display:none;">
+          <div class="student-eyebrow">HONORS / ACADEMIC BADGES</div>
+          <h1 class="student-heading">CERTIFICATES.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Verifiable credentials issued for participating and winning competitions.</p>
+          <div class="my-events-grid" style="margin-top:24px;">
+            <div class="my-event-card">
+              <div class="my-event-top"><span>CERTIFICATE ID</span><span class="my-event-id">CERT-2026-FC01-992</span></div>
+              <div class="my-event-body">
+                <div class="my-event-circle">FC</div>
+                <div>
+                  <h3 class="my-event-title">FirstCommit '26 Quiz 1.0</h3>
+                  <div class="my-event-meta"><span>ISSUED: 15 OCT 2026</span><span>HONOR: TOP 10% PARTICIPANT</span></div>
+                </div>
+              </div>
+              <button type="button" class="btn-open-journey" onclick="alert('Certificate verified: Hash 0x9b32...f87e')">VERIFY CREDENTIAL ↗</button>
+            </div>
+          </div>
+        </section>
+        <section id="tab-rulebot" style="display:none;">
+          <div class="student-eyebrow">ASSISTANT / GUIDELINES</div>
+          <h1 class="student-heading">RULEBOT AI.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Instant answers to competition schedules, submission formats and judging rubrics.</p>
+          <div class="profile-edit-shell">
+            <div class="profile-field" style="margin-bottom:12px;">
+              <span>QUESTION: WHAT IS ROUND 1 IN REBUILD '26?</span>
+              <strong style="font-size:14px;margin-top:8px;">Round 1 is faithful recreation. Rebuild the 4 core pages (Landing, Login, Register, Student Dashboard) desktop-first. Frontend only, mock data fine, no backend needed. Submit GitHub repo and live demo before Friday 10:00 PM IST.</strong>
+            </div>
+            <div class="profile-field">
+              <span>QUESTION: CAN I WORK IN A TEAM?</span>
+              <strong style="font-size:14px;margin-top:8px;">ReBuild '26 is an INDIVIDUAL hackathon. You build alone. The team name you create on Unstop and the portal is used strictly for organizing and tracking submissions.</strong>
+            </div>
+          </div>
+        </section>
+        <section id="tab-guide" style="display:none;">
+          <div class="student-eyebrow">DOCUMENTATION / STUDENT GUIDE</div>
+          <h1 class="student-heading">STUDENT GUIDE.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Official step-by-step rules and workflow instructions for CampusCode competitions.</p>
+          <div class="profile-field" style="margin-top:20px;">
+            <span>REBUILD '26 WORKFLOW</span>
+            <strong style="font-size:14px;margin-top:8px;">1. Login with demo student account.<br>2. Explore active events and joined events.<br>3. Submit GitHub repo & live Netlify URL under Event Hub.<br>4. Inspect Digital ID and Certificates.</strong>
+          </div>
+        </section>
+        <section id="tab-comms" style="display:none;">
+          <div class="student-eyebrow">UPDATES / BROADCASTS</div>
+          <h1 class="student-heading">OFFICIAL COMMUNICATION.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Official announcements synchronized with WhatsApp community channels.</p>
+          <div class="hackathon-list" style="margin-top:20px;">
+            <div class="hackathon-row">
+              <div class="hackathon-info">
+                <span class="badge-live">LATEST ANNOUNCEMENT</span>
+                <h3 style="margin-top:6px;">Round 1 Submission Window Open</h3>
+                <div class="hackathon-meta"><span>5 NOV 2026</span><span>·</span><span>TEAM CAMPUSCODE</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="tab-notifications" style="display:none;">
+          <div class="student-eyebrow">ALERTS / BACKEND DATA</div>
+          <h1 class="student-heading">NOTIFICATIONS.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Important notifications regarding rounds, evaluation, and account status.</p>
+          <div class="hackathon-list" style="margin-top:20px;">
+            <div class="hackathon-row">
+              <div class="hackathon-info">
+                <h3>Welcome to CampusCode Hackathon Arena</h3>
+                <p style="font-size:13px;color:var(--text-soft);margin-top:4px;">Your student account is active and verified. Join competitions and start building.</p>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:10px;color:var(--muted);">JUST NOW</span>
+            </div>
+          </div>
+        </section>
+        <section id="tab-support" style="display:none;">
+          <div class="student-eyebrow">ASSISTANCE / HELP & SUPPORT</div>
+          <h1 class="student-heading">HELP & SUPPORT.</h1>
+          <p style="color:var(--text-soft);font-size:14px;margin-top:6px;">Connect with CampusCode mentors and hackathon organizers.</p>
+          <div class="profile-field" style="margin-top:20px;">
+            <span>DIRECT CHANNELS</span>
+            <strong style="font-size:14px;margin-top:8px;">Support Email: <a href="mailto:support@campuscode.co.in" style="color:var(--purple);">support@campuscode.co.in</a><br>WhatsApp Community: Official Announcement Channel</strong>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    const tabs=['overview','events','my-events','hub','profile','hackmate','ideacheck','digital-card','certificates','rulebot','guide','comms','notifications','support'];
+    function switchTab(t){
+      tabs.forEach(id=>{
+        const el=document.getElementById('tab-'+id);
+        if(el)el.style.display=(id===t)?'block':'none';
+        const p=document.getElementById('pill-'+id);
+        if(p){
+          if(id===t){
+            p.classList.add('active');
+            if(!p.querySelector('.active-arrow')){
+              const arr=document.createElement('span');
+              arr.className='active-arrow';
+              arr.innerText='→';
+              p.appendChild(arr);
+            }
+          }else{
+            p.classList.remove('active');
+            const arr=p.querySelector('.active-arrow');
+            if(arr)arr.remove();
+          }
+        }
+      });
+      const titleMap={
+        'overview':'OVERVIEW',
+        'events':'EVENTS',
+        'my-events':'MY EVENTS',
+        'hub':'EVENT HUB',
+        'profile':'PROFILE',
+        'hackmate':'HACKMATE AI',
+        'ideacheck':'IDEACHECK AI',
+        'digital-card':'DIGITAL CARD',
+        'certificates':'CERTIFICATES',
+        'rulebot':'RULEBOT AI',
+        'guide':'STUDENT GUIDE',
+        'comms':'COMMUNICATION',
+        'notifications':'NOTIFICATIONS',
+        'support':'SUPPORT'
+      };
+      document.getElementById('topbarSectionTitle').innerText=titleMap[t]||'WORKSPACE';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function populateUserData(){
+      const u=getUser();
+      const first=u.name.split(' ')[0].toUpperCase();
+      document.getElementById('dashGreetingName').innerText=first+'.';
+      document.getElementById('topbarUserName').innerText=u.name;
+      document.getElementById('sidebarUserName').innerText=u.name;
+      document.getElementById('sidebarRole').innerText=u.role||'STUDENT';
+      const initials=u.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      document.getElementById('sidebarAvatar').innerText=initials;
+      document.getElementById('pvName').innerText=u.name;
+      document.getElementById('pvEmail').innerText=u.email;
+      document.getElementById('pvRole').innerText=u.role;
+      document.getElementById('pvCampusId').innerText=u.campusId;
+      document.getElementById('pvBio').innerText=u.bio||'Full-stack builder passionate about hackathons, systems, and shipping products.';
+      document.getElementById('pvSkills').innerText=u.skills||'HTML, CSS, JavaScript, React, Next.js, Node.js, Python, Tailwind CSS, Git';
+      document.getElementById('editName').value=u.name;
+      document.getElementById('editEmail').value=u.email;
+      document.getElementById('editBio').value=u.bio||'';
+      document.getElementById('editSkills').value=u.skills||'';
+      const chn=document.getElementById('cardHolderName');
+      if(chn)chn.innerText=u.name;
+      const chi=document.getElementById('cardHolderId');
+      if(chi)chi.innerText=u.campusId;
+      const tmn=document.getElementById('teamMemberName');
+      if(tmn)tmn.innerText=u.name;
+      const tmi=document.getElementById('teamMemberId');
+      if(tmi)tmi.innerText=u.campusId;
+    }
+    function toggleEditProfile(editing){
+      document.getElementById('profileViewMode').style.display=editing?'none':'block';
+      document.getElementById('profileEditMode').style.display=editing?'block':'none';
+      const msg=document.getElementById('profileStatusMsg');
+      if(msg)msg.style.display='none';
+    }
+    function appendSkill(skill){
+      const el=document.getElementById('editSkills');
+      const cur=el.value.split(',').map(s=>s.trim()).filter(Boolean);
+      if(!cur.includes(skill)){
+        cur.push(skill);
+        el.value=cur.join(', ');
+      }
+    }
+    function saveProfileChanges(){
+      const u=getUser();
+      u.name=document.getElementById('editName').value.trim()||u.name;
+      u.bio=document.getElementById('editBio').value.trim();
+      u.skills=document.getElementById('editSkills').value.trim();
+      setUser(u);
+      populateUserData();
+      const msg=document.getElementById('profileStatusMsg');
+      msg.innerText='✓ Profile saved to the backend successfully.';
+      msg.style.display='block';
+      setTimeout(()=>{toggleEditProfile(false);},1200);
+    }
+    function openJourney(eventId){
+      switchTab('hub');
+      if(eventId==='rebuild'){
+        document.getElementById('hubTitle').innerText='ReBuild \'26';
+      }else if(eventId==='quiz2'){
+        document.getElementById('hubTitle').innerText='FirstCommit \'26 Quiz 2.0';
+      }else{
+        document.getElementById('hubTitle').innerText='FirstCommit \'26 Quiz';
+      }
+    }
+    function switchHubSubTab(sub){
+      ['overview','submit','team','leaderboard'].forEach(s=>{
+        const el=document.getElementById('hub-'+s);
+        if(el)el.style.display=(s===sub)?'block':'none';
+        const b=document.getElementById('hubbtn-'+s);
+        if(b){
+          if(s===sub)b.classList.add('active');
+          else b.classList.remove('active');
+        }
+      });
+    }
+    function handleHubSubmit(e){
+      e.preventDefault();
+      document.getElementById('submitSuccessMsg').style.display='block';
+    }
+    function promptJoinCode(evName){
+      const code=prompt('Enter private invite code for '+evName+':');
+      if(code){
+        alert('Code accepted. Joined '+evName+' successfully.');
+        switchTab('my-events');
+      }
+    }
+    function refreshStudentView(){
+      populateUserData();
+      alert('Student dashboard refreshed from backend.');
+    }
+    populateUserData();
+  </script>
+</body>
+</html>
