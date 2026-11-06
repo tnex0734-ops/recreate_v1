@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — CampusCode Hackathon Arena</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <header class="auth-nav">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-slashes"><span></span><span></span><span></span></span>
+        <span class="brand-text">
+          <strong>CAMPUSCODE</strong>
+          <small>HACKATHON ARENA</small>
+        </span>
+      </a>
+      <a href="index.html" class="auth-back">← BACK TO HOME</a>
+    </header>
+    <main class="auth-main">
+      <section>
+        <div class="auth-intro-tag">
+          <i></i> CAMPUSCODE / REGISTRATION
+        </div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:8px;">
+          CREATE 02 / 02
+        </div>
+        <h1>JOIN<br>THE<br><span class="stroke-word">ARENA.</span></h1>
+        <p class="auth-intro-desc">
+          Create your CampusCode identity and become part of a student ecosystem designed around ideas, teams, technology and competition.
+        </p>
+        <div class="auth-pills">
+          <div class="auth-pill"><span>01</span>CREATE</div>
+          <div class="auth-pill"><span>02</span>COLLABORATE</div>
+          <div class="auth-pill"><span>03</span>COMPETE</div>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center;margin-top:36px;font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:1px;">
+          <span>● VERIFIED IDENTITIES</span>
+          <span>CAMPUS NETWORK</span>
+          <span>2026</span>
+        </div>
+      </section>
+      <section class="auth-card">
+        <div class="auth-card-head">
+          <span>NEW ACCOUNT</span>
+          <span>CC / 02</span>
+        </div>
+        <h2>REGISTER</h2>
+        <p>Create your CampusCode account.</p>
+        <div id="registerStep1">
+          <form class="auth-form" onsubmit="handleRegisterStep1(event)">
+            <div class="form-field">
+              <label>FULL NAME</label>
+              <div class="input-with-icon">
+                <span class="prefix">◇</span>
+                <input type="text" id="regName" placeholder="Your full name" value="Sai Harshith" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>EMAIL ADDRESS</label>
+              <div class="input-with-icon">
+                <span class="prefix">@</span>
+                <input type="email" id="regEmail" placeholder="you@example.com" value="sai@campuscode.co.in" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>ACCOUNT TYPE</label>
+              <div class="role-badge-row">
+                <span>🎓 STUDENT</span>
+              </div>
+              <small style="font-family:var(--font-mono);font-size:9px;color:var(--muted);margin-top:3px;">
+                Organizer? Accounts are created by our team — contact <a href="mailto:support@campuscode.co.in" style="color:var(--purple);">campuscode@gmail.com</a>
+              </small>
+            </div>
+            <div class="form-field">
+              <label>PASSWORD</label>
+              <div class="input-with-icon">
+                <span class="prefix">*</span>
+                <input type="password" id="regPassword" placeholder="Create a password" value="password123" required>
+                <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('regPassword')">SHOW</button>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>CONFIRM PASSWORD</label>
+              <div class="input-with-icon">
+                <span class="prefix">*</span>
+                <input type="password" id="regPasswordConfirm" placeholder="Repeat your password" value="password123" required>
+                <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('regPasswordConfirm')">SHOW</button>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>CAPTCHA</label>
+              <div class="captcha-box">
+                <div class="captcha-code" id="regCaptchaDisplay">60207</div>
+                <button type="button" class="captcha-refresh-btn" onclick="refreshRegCaptcha()">↻ NEW</button>
+              </div>
+              <input type="text" class="captcha-input" id="regCaptchaInput" placeholder="Enter the code above" required>
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="regAgeCheck" required checked>
+              <label for="regAgeCheck">I confirm that I am <strong>18 years of age or older.</strong></label>
+            </div>
+            <button type="submit" class="auth-submit-btn">
+              <span>CONTINUE TO VERIFICATION</span>
+              <span>↗</span>
+            </button>
+          </form>
+          <div class="auth-alt-row">
+            <span>ALREADY HAVE AN ACCOUNT?</span>
+            <a href="login.html">LOGIN HERE →</a>
+          </div>
+        </div>
+        <div id="registerStep2" class="otp-screen" style="display:none;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--purple);font-weight:700;">STEP 2 OF 2 · EMAIL VERIFICATION</div>
+          <h3 style="font-size:20px;font-weight:900;">Enter 6-Digit OTP</h3>
+          <p style="font-size:13px;color:var(--text-soft);">A verification code was dispatched to <strong id="otpTargetEmail">sai@campuscode.co.in</strong>.</p>
+          <div class="otp-boxes">
+            <input type="text" maxlength="1" class="otp-box" value="6" id="o1">
+            <input type="text" maxlength="1" class="otp-box" value="9" id="o2">
+            <input type="text" maxlength="1" class="otp-box" value="4" id="o3">
+            <input type="text" maxlength="1" class="otp-box" value="2" id="o4">
+            <input type="text" maxlength="1" class="otp-box" value="1" id="o5">
+            <input type="text" maxlength="1" class="otp-box" value="8" id="o6">
+          </div>
+          <button type="button" class="auth-submit-btn" onclick="verifyOtpAndRegister()">
+            <span>COMPLETE REGISTRATION</span>
+            <span>↗</span>
+          </button>
+          <div class="auth-alt-row">
+            <a href="#" onclick="backToStep1();return false;">← EDIT DETAILS</a>
+            <a href="#" onclick="alert('Demo OTP code is: 694218');return false;">RESEND OTP</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="auth-footer">
+      <span>AUTH / 2026</span>
+      <span>● SECURE REGISTRATION</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    let activeRegCaptcha='60207';
+    function refreshRegCaptcha(){
+      activeRegCaptcha=genCaptcha();
+      document.getElementById('regCaptchaDisplay').innerText=activeRegCaptcha;
+      document.getElementById('regCaptchaInput').value='';
+    }
+    function togglePasswordVisibility(id){
+      const el=document.getElementById(id);
+      const b=event.target;
+      if(el.type==='password'){
+        el.type='text';
+        b.innerText='HIDE';
+      }else{
+        el.type='password';
+        b.innerText='SHOW';
+      }
+    }
+    let pendingUser={};
+    function handleRegisterStep1(e){
+      e.preventDefault();
+      const inVal=document.getElementById('regCaptchaInput').value.trim();
+      if(inVal.toUpperCase()!==activeRegCaptcha.toUpperCase()){
+        alert('Invalid captcha. Please enter: '+activeRegCaptcha);
+        return;
+      }
+      const p1=document.getElementById('regPassword').value;
+      const p2=document.getElementById('regPasswordConfirm').value;
+      if(p1!==p2){
+        alert('Passwords do not match.');
+        return;
+      }
+      pendingUser={
+        name:document.getElementById('regName').value.trim(),
+        email:document.getElementById('regEmail').value.trim(),
+        role:'STUDENT',
+        campusId:'CC-2026-'+Math.floor(1000+Math.random()*9000),
+        bio:'Full-stack builder passionate about hackathons, systems, and shipping products.',
+        skills:'HTML, CSS, JavaScript, React, Next.js, Node.js, Python, Tailwind CSS, Git'
+      };
+      document.getElementById('otpTargetEmail').innerText=pendingUser.email;
+      document.getElementById('registerStep1').style.display='none';
+      document.getElementById('registerStep2').style.display='flex';
+    }
+    function backToStep1(){
+      document.getElementById('registerStep2').style.display='none';
+      document.getElementById('registerStep1').style.display='block';
+    }
+    function verifyOtpAndRegister(){
+      const entered=document.getElementById('o1').value+document.getElementById('o2').value+document.getElementById('o3').value+document.getElementById('o4').value+document.getElementById('o5').value+document.getElementById('o6').value;
+      if(entered!=='694218'){
+        alert('Demo OTP code is 694218');
+        return;
+      }
+      setUser(pendingUser);
+      location.href='student.html';
+    }
+    refreshRegCaptcha();
+  </script>
+</body>
+</html>

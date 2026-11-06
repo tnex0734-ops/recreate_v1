@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — CampusCode Hackathon Arena</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <header class="auth-nav">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-slashes"><span></span><span></span><span></span></span>
+        <span class="brand-text">
+          <strong>CAMPUSCODE</strong>
+          <small>HACKATHON ARENA</small>
+        </span>
+      </a>
+      <a href="index.html" class="auth-back">← BACK TO HOME</a>
+    </header>
+    <main class="auth-main">
+      <section>
+        <div class="auth-intro-tag">
+          <i></i> CAMPUSCODE / AUTHENTICATION
+        </div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:8px;">
+          ACCESS 01 / 02
+        </div>
+        <h1>ENTER<br>THE<br><span class="stroke-word">ARENA.</span></h1>
+        <p class="auth-intro-desc">
+          Sign in to continue building, collaborating and competing with the CampusCode community.
+        </p>
+        <div class="auth-pills">
+          <div class="auth-pill"><span>01</span>BUILD</div>
+          <div class="auth-pill"><span>02</span>COMPETE</div>
+          <div class="auth-pill"><span>03</span>SHIP</div>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center;margin-top:36px;font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:1px;">
+          <span>● AUTHENTICATION READY</span>
+          <span>SECURE ACCESS</span>
+          <span>2026</span>
+        </div>
+      </section>
+      <section class="auth-card">
+        <div class="auth-card-head">
+          <span>EXISTING ACCOUNT</span>
+          <span>CC / 01</span>
+        </div>
+        <h2>LOGIN</h2>
+        <p>Access your CampusCode account.</p>
+        <form class="auth-form" onsubmit="handleLogin(event)">
+          <div class="form-field">
+            <label>EMAIL ADDRESS</label>
+            <div class="input-with-icon">
+              <span class="prefix">@</span>
+              <input type="email" id="loginEmail" placeholder="you@example.com" value="sai@campuscode.co.in" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>PASSWORD</label>
+            <div class="input-with-icon">
+              <span class="prefix">*</span>
+              <input type="password" id="loginPassword" placeholder="Enter your password" value="password123" required>
+              <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility()">SHOW</button>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>CAPTCHA</label>
+            <div class="captcha-box">
+              <div class="captcha-code" id="captchaDisplay">68572</div>
+              <button type="button" class="captcha-refresh-btn" onclick="refreshCaptcha()">↻ NEW</button>
+            </div>
+            <input type="text" class="captcha-input" id="captchaInput" placeholder="Enter the code above" required>
+          </div>
+          <div class="vehicle-stage">
+            <div class="vehicle-bus">
+              <svg width="34" height="20" viewBox="0 0 34 20" fill="none">
+                <rect x="2" y="2" width="30" height="13" rx="3" fill="#111"/>
+                <rect x="5" y="5" width="6" height="4" rx="1" fill="#7665ff"/>
+                <rect x="14" y="5" width="6" height="4" rx="1" fill="#a8e62e"/>
+                <rect x="23" y="5" width="6" height="4" rx="1" fill="#fff"/>
+                <circle cx="8" cy="16" r="3" fill="#111"/>
+                <circle cx="26" cy="16" r="3" fill="#111"/>
+              </svg>
+              <span>Zzz</span>
+            </div>
+            <span class="vehicle-status">READY</span>
+          </div>
+          <button type="submit" class="auth-submit-btn">
+            <span>LOGIN</span>
+            <span>↗</span>
+          </button>
+        </form>
+        <button type="button" class="auth-demo-btn" onclick="quickDemoLogin()" style="width:100%;margin-top:10px;">
+          ⚡ QUICK DEMO LOGIN (EVALUATORS)
+        </button>
+        <div class="auth-alt-row">
+          <a href="#" onclick="alert('Password reset link sent to your email.');return false;">FORGOT PASSWORD?</a>
+          <a href="register.html">CREATE ACCOUNT →</a>
+        </div>
+      </section>
+    </main>
+    <footer class="auth-footer">
+      <span>AUTH / 2026</span>
+      <span>● SECURE LOGIN</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    let activeCaptcha='68572';
+    function refreshCaptcha(){
+      activeCaptcha=genCaptcha();
+      document.getElementById('captchaDisplay').innerText=activeCaptcha;
+      document.getElementById('captchaInput').value='';
+    }
+    function togglePasswordVisibility(){
+      const f=document.getElementById('loginPassword');
+      const b=event.target;
+      if(f.type==='password'){
+        f.type='text';
+        b.innerText='HIDE';
+      }else{
+        f.type='password';
+        b.innerText='SHOW';
+      }
+    }
+    function handleLogin(e){
+      e.preventDefault();
+      const inVal=document.getElementById('captchaInput').value.trim();
+      if(inVal.toUpperCase()!==activeCaptcha.toUpperCase()){
+        alert('Invalid captcha. Please enter: '+activeCaptcha);
+        return;
+      }
+      const email=document.getElementById('loginEmail').value.trim();
+      const prev=getUser();
+      setUser({
+        name:prev&&prev.name?prev.name:'Sai Harshith',
+        email:email,
+        role:'STUDENT',
+        campusId:prev&&prev.campusId?prev.campusId:'CC-2026-8841',
+        bio:prev&&prev.bio?prev.bio:'Full-stack builder passionate about hackathons, systems, and shipping products.',
+        skills:prev&&prev.skills?prev.skills:'HTML, CSS, JavaScript, React, Next.js, Node.js, Python, Tailwind CSS, Git'
+      });
+      location.href='student.html';
+    }
+    refreshCaptcha();
+  </script>
+</body>
+</html>
